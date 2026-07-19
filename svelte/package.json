@@ -1,0 +1,28 @@
+{
+  "name": "etzhayyim-chat-shell-svelte",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "shadow-cljs watch app & vite dev",
+    "dev:cljs": "shadow-cljs watch app",
+    "cljs:release": "shadow-cljs release app",
+    "build": "pnpm cljs:release && vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "scheduler": "^0.23.2",
+    "svelte": "^5.55.3"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^7.2.8",
+    "@sveltejs/kit": "^2.57.1",
+    "@sveltejs/vite-plugin-svelte": "^5.1.1",
+    "shadow-cljs": "^2.28.23",
+    "svelte-check": "^4.4.6",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.2"
+  }
+}

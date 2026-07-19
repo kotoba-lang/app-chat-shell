@@ -1,0 +1,14 @@
+{
+  "items": [
+    { "name": "ソファー（2人以上用）", "qty": 1 },
+    { "name": "電子レンジ", "qty": 1 }
+  ],
+  "name": "渋谷　太郎",
+  "nameKana": "シブヤ　タロウ",
+  "postal": "150-8010",
+  "address": "渋谷区宇田川町１－１",
+  "building": "",
+  "phone": "0312345678",
+  "email": "",
+  "preferredDate": ""
+}

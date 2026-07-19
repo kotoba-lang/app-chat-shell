@@ -1,0 +1,36 @@
+{
+  "name": "etzhayyim-chat-shell",
+  "main": "svelte/.svelte-kit/cloudflare/_worker.js",
+  "compatibility_date": "2025-03-17",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "routes": [
+    {
+      "pattern": "etzhayyim.com/*",
+      "zone_name": "etzhayyim.com"
+    },
+    {
+      "pattern": "chat.etzhayyim.com/*",
+      "zone_name": "etzhayyim.com"
+    }
+  ],
+  "assets": {
+    "directory": "./svelte/.svelte-kit/cloudflare/client",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "vars": {
+    "CHAT_VERSION": "0.1.0",
+    "CHAT_AGENT_URL": "https://chat-agent.etzhayyim.com",
+    "CHAT_ACTOR_DID": "did:web:etzhayyim.com",
+    "AUTHN_URL": "https://authn.etzhayyim.com",
+    "DEFAULT_MODEL": "gemma-4-e4b-it",
+    "APP_FRAMEWORK": "sveltekit-edge-bff",
+    "AGENTGATEWAY_MCP_ROUTER_URL": "https://mcp.etzhayyim.com/xrpc/ai.etzhayyim.mcp.message"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

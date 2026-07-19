@@ -1,0 +1,1 @@
+{:schema "etzhayyim.repository/readme-v1" :name "com-etzhayyim-app-chat-shell" :kind :application-shell :source "etzhayyim/root/60-apps/etzhayyim-chat-shell"}

@@ -1,0 +1,38 @@
+{
+  "@context": "https://etzhayyim.com/ns/kotodama/v1",
+  "@id": "did:web:etzhayyim.com",
+  "name": "etzhayyim-chat-shell",
+  "nanoid": "chatshll",
+  "performerType": "service",
+  "displayName": "Etzhayyim Chat",
+  "description": "ChatGPT/Claude.ai-style chat at etzhayyim.com apex. Thin CF Worker shell over Hono+Svelte; agent loop runs in mitama-chat-pool (LangGraph). Tools: code_exec, image_gen, file_save, rag_search, web_search, schedule_report.",
+  "did": "did:web:etzhayyim.com",
+  "tier": "T3",
+  "uiType": "appview",
+  "embedUrl": "https://etzhayyim.com/embed",
+  "routes": [
+    {
+      "host": "etzhayyim.com",
+      "paths": ["/"],
+      "tls": true
+    }
+  ],
+  "layer": "chat-shell",
+  "atStandard": false,
+  "nsidPrefixes": ["ai.etzhayyim.apps.chat"],
+  "backendDependencies": {
+    "chatAgent": "https://chat-agent.etzhayyim.com",
+    "authn": "https://authn.etzhayyim.com",
+    "atproto": "https://atproto.etzhayyim.com",
+    "comfyui": "https://comfyui.etzhayyim.com",
+    "bpmn": "https://dispatcher.etzhayyim.com"
+  },
+  "adr": [
+    "2604282300",
+    "2604241038",
+    "0049",
+    "0036",
+    "0056",
+    "260413"
+  ]
+}

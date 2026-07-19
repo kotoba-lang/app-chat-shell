@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><title>粗大ごみ受付（モック）申込者情報</title>
+<style>
+  body{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;max-width:640px;margin:24px auto;color:#222;padding:0 16px}
+  h1{font-size:20px;border-bottom:3px solid #2b6cb0;padding-bottom:8px}
+  .note{background:#eef5ff;border:1px solid #cfe0ff;padding:8px 12px;border-radius:6px;font-size:13px;color:#234}
+  label{display:block;margin:14px 0 4px;font-weight:600;font-size:14px}
+  .req{color:#c00;font-size:12px;margin-left:6px}
+  input{width:100%;padding:9px;border:1px solid #aaa;border-radius:5px;font-size:15px;box-sizing:border-box}
+  .row2{display:flex;gap:12px}.row2>div{flex:1}
+  button{margin-top:20px;background:#2b6cb0;color:#fff;border:0;padding:11px 24px;border-radius:6px;font-size:15px}
+</style></head>
+<body>
+  <h1>粗大ごみ収集 インターネット受付（モック）</h1>
+  <p class="note">これは <b>sodai_browser.py の動作確認用ローカルモック</b>です（公式サイトではありません）。フリガナ=全角カタカナ、電話=半角数字、メール=半角の検証を模しています。</p>
+  <form>
+    <label>お名前<span class="req">必須・全角</span></label>
+    <input name="applicantName" placeholder="渋谷　太郎">
+    <label>フリガナ<span class="req">必須・全角カタカナ</span></label>
+    <input name="applicantKana" placeholder="シブヤ　タロウ">
+    <div class="row2">
+      <div><label>郵便番号<span class="req">半角</span></label><input name="zipCode" placeholder="150-8010"></div>
+      <div><label>電話番号<span class="req">半角数字</span></label><input name="telNo" placeholder="0312345678"></div>
+    </div>
+    <label>住所<span class="req">必須・全角</span></label>
+    <input name="address1" placeholder="渋谷区宇田川町１－１">
+    <label>建物名・部屋番号</label>
+    <input name="buildingName" placeholder="○○マンション１０１">
+    <label>メールアドレス<span class="req">半角英数記号</span></label>
+    <input type="email" name="mailAddress" placeholder="taro@example.com">
+    <button type="button">確認画面へ（モック・送信しません）</button>
+  </form>
+</body></html>
