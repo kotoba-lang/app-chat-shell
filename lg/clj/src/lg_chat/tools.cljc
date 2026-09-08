@@ -18,7 +18,7 @@
   (:require [cheshire.core :as json]
             [babashka.http-client :as http]
             [babashka.process :as p]
-            [clojure.string :as str])
+            [kotoba.lang.text :as str])
   (:import [java.security MessageDigest]
            [javax.crypto Mac]
            [javax.crypto.spec SecretKeySpec]
@@ -136,7 +136,7 @@
                :durationMs (int (- (now-ms) started))}))
           (catch Exception e
             (let [msg (.getMessage e)]
-              (if (and msg (str/includes? (str/lower-case msg) "timeout"))
+              (if (and msg (str/includes? (str/lower msg) "timeout"))
                 {:ok false :error (str "timeout after " timeout-sec "s")}
                 {:ok false :error (take-str (str "code_exec: " msg) 200)}))))))))
 
@@ -257,7 +257,7 @@
           content (as-str (arg args "content"))]
       (if (or (str/blank? filename) (str/blank? content))
         {:ok false :error "filename and content are required"}
-        (let [encoding (str/lower-case (let [e (as-str (arg args "encoding"))] (if (= "" e) "utf-8" e)))
+        (let [encoding (str/lower (let [e (as-str (arg args "encoding"))] (if (= "" e) "utf-8" e)))
               mime (let [m (as-str (arg args "mimeType"))] (if (= "" m) "text/plain" m))
               blob (try
                      (if (= encoding "base64")

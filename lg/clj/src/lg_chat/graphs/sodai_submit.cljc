@@ -20,7 +20,7 @@
   the discover/prefill/submit double-gate logic lives inside the browser leg and
   is preserved as documented constants for the future browser-capable runtime
   (scripts/sodai_browser.py — local patchright runner — stays the live path)."
-  (:require [langgraph.graph :as g]
+  (:require [kotoba.lang.text] [langgraph.graph :as g]
             [lg-chat.sodai-fields :as sf]))
 
 (def default-config {:ward-url sf/reception-url :nav-timeout-ms 30000 :allow-submit? false})
@@ -29,7 +29,7 @@
 ;; ── nodes ──────────────────────────────────────────────────────────────────
 
 (defn node-validate [state]
-  (let [mode (clojure.string/lower-case (str (or (:mode state) "prefill")))
+  (let [mode (kotoba.lang.text/lower (str (or (:mode state) "prefill")))
         app (or (:application state) {})]
     (cond
       (not (#{"discover" "prefill" "submit"} mode))

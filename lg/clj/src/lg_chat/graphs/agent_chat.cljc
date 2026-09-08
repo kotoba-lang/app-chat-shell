@@ -16,7 +16,7 @@
   (:require [langgraph.graph :as g]
             [cheshire.core :as json]
             [babashka.http-client :as http]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [lg-chat.tools :as tools]))
 
 (def default-config

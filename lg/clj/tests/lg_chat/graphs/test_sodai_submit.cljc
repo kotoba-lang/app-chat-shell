@@ -3,7 +3,7 @@
   clj port of lg/tests/test_sodai_submit.py (ADR-2606280030). Verifies the graph
   compiles, mode validation, the field-map override SSoT, and the browser-missing
   degradation (status enum preserved)."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is]]
             [lg-chat.graphs.sodai-submit :as ss]
             [lg-chat.sodai-fields :as sf]))
 
@@ -38,7 +38,7 @@
   ;; emits when its browser lib is absent.
   (let [out (ss/node-drive {:mode "prefill" :application app})]
     (is (= "playwright_missing" (:status out)))
-    (is (clojure.string/includes? (clojure.string/lower-case (:error out)) "playwright"))))
+    (is (kotoba.lang.text/includes? (kotoba.lang.text/lower (:error out)) "playwright"))))
 
 (deftest test-validate-error-short-circuits-drive
   (let [out (ss/node-drive {:status "error" :error "bad"})]
