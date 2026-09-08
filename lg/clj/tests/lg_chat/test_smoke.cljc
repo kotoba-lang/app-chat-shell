@@ -1,7 +1,7 @@
 (ns lg-chat.test-smoke
   "Smoke tests — graphs compile and tools dispatch without network/LLM key.
   clj port of lg/tests/test_smoke.py (ADR-2606280030)."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is testing]]
             [lg-chat.graphs.agent-chat :as agent-chat]
             [lg-chat.tools :as tools]
             [lg-chat.server :as server]))
@@ -24,12 +24,12 @@
 (deftest test-code-exec-tool
   (let [result (tools/tool-code-exec {"code" "print('hello from lg-chat')"})]
     (is (true? (:ok result)))
-    (is (clojure.string/includes? (:stdout result) "hello from lg-chat"))))
+    (is (kotoba.lang.text/includes? (:stdout result) "hello from lg-chat"))))
 
 (deftest test-code-exec-timeout
   (let [result (tools/tool-code-exec {"code" "import time; time.sleep(100)" "timeoutSec" 2})]
     (is (false? (:ok result)))
-    (is (clojure.string/includes? (:error result) "timeout"))))
+    (is (kotoba.lang.text/includes? (:error result) "timeout"))))
 
 (deftest test-tool-gates-without-creds
   (testing "tools gracefully report unavailability when their backend creds are absent"

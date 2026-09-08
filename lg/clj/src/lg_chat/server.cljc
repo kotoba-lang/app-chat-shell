@@ -14,7 +14,7 @@
   here — history still lives in browser IndexedDB (ADR-2605230000)."
   (:require [org.httpkit.server :as hk]
             [cheshire.core :as json]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [langgraph.graph :as g]
             [lg-chat.graphs.agent-chat :as agent-chat]
             [lg-chat.graphs.sodai-submit :as sodai-submit]))
