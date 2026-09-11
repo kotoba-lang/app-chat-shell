@@ -29,7 +29,7 @@ the `.py`.
   credential GATE (no creds → graceful "not available") is byte-identical; the live PUT
   is unverified against B2 in the sandbox.
 - **rag_search / web_search RW-fallback** — the RisingWave (psycopg) leg is NOT reproduced
-  (bb has no pg driver; RisingWave is a deprecated substrate — repo rule: kotoba Datom log
+  (kbb -M:has no pg driver; RisingWave is a deprecated substrate — repo rule: kotoba Datom log
   is canonical). The "falls back gracefully" contract is preserved (absent RW → graceful
   unavailable, never a crash).
 
@@ -37,5 +37,5 @@ the `.py`.
 
 ```bash
 cd 60-apps/etzhayyim-chat-shell/lg/clj
-bb run test          # → Ran 12 tests / 28 assertions, 0 failures
+kbb -M:test          # → Ran 12 tests / 28 assertions, 0 failures
 ```
