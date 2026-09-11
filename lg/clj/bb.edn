@@ -1,7 +1,7 @@
 {;; Scoped bb.edn for the lg-chat clj port (ADR-2606280030, langgraph-python → langgraph-clj).
  ;; Verifies independently of the repo-root bb.edn. langgraph-clj is pinned to the same
  ;; sha the root manifest uses; cheshire / org.httpkit.server / babashka.http-client are
- ;; bb built-ins (no dep entry needed).
+ ;; kbb -M:built-ins (no dep entry needed).
  :paths ["src" "tests"]
  :deps {com-junkawasaki/langgraph-clj
         {:git/url "https://github.com/com-junkawasaki/langgraph-clj"

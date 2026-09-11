@@ -1,6 +1,6 @@
 ;; run_tests.clj — lg-chat clj test runner (repo rule: .clj, not .sh).
-;; Usage: from 60-apps/etzhayyim-chat-shell/lg/clj/ run `bb run test`
-;;        or `bb tests/run_tests.clj`.
+;; Usage: from 60-apps/etzhayyim-chat-shell/lg/clj/ run `kbb -M:test`
+;;        or `kbb tests/run_tests.cljk`.
 (require '[clojure.test :as t]
          '[org.httpkit.server :as httpkit]
          '[lg-chat.server :as server]

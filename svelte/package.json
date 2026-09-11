@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "shadow-cljs watch app & vite dev",
-    "dev:cljs": "shadow-cljs watch app",
-    "cljs:release": "shadow-cljs release app",
+    "dev": "amu compile --target wasm32-browser app & vite dev",
+    "dev:cljs": "amu compile --target wasm32-browser app",
+    "cljs:release": "amu compile --target wasm32-browser app",
     "build": "pnpm cljs:release && vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
