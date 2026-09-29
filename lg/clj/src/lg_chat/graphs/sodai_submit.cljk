@@ -14,7 +14,7 @@
   PORT DEVIATION (noted, functionality not silently dropped): the py `drive`
   node drives a real browser via Playwright (async). bb ships no Playwright/CDP
   driver, so `drive` here returns the SAME `status \"playwright_missing\"` enum
-  the py emits when its browser lib is absent — and, per lg/CLAUDE.md, the pod
+  the py emits when its browser lib is absent — and, per lg/AGENTS.md, the pod
   sodai_submit graph is itself 未デプロイ・未配線 (DC-IP/WAF-blocked from the
   reception host). The validate node (mode validation + defaults) is ported 1:1;
   the discover/prefill/submit double-gate logic lives inside the browser leg and

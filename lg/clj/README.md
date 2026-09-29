@@ -21,7 +21,7 @@ the `.py`.
 
 - **sodai_submit `drive`** — the py drives a real browser via Playwright. bb ships no
   Playwright/CDP driver, so `drive` returns the SAME `status "playwright_missing"` enum
-  the py emits when its browser lib is absent. Per `../CLAUDE.md` the pod graph is itself
+  the py emits when its browser lib is absent. Per `../AGENTS.md` the pod graph is itself
   未デプロイ・未配線 (DC-IP/WAF-blocked); the live path is the local `scripts/sodai_browser.py`
   patchright runner (out of scope for this graph port). The discover/prefill/submit
   double-gate constants are preserved for a future browser-capable clj runtime.
