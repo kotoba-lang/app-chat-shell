@@ -564,7 +564,7 @@ app.get("/api/auth/signin-url", (c) => {
   const url = new URL(c.req.url);
   const redirectUrl = url.searchParams.get("redirectUrl") ?? "https://etzhayyim.com/";
   const authn = c.env.AUTHN_URL ?? "https://authn.etzhayyim.com";
-  // sign-up = passkey-first zero-input flow per etzhayyim-project-auth/CLAUDE.md.
+  // sign-up = passkey-first zero-input flow per etzhayyim-project-auth/AGENTS.md.
   // Existing users land on the same URL and tap their passkey; authn detects
   // the credentialId and routes to sign-in.
   const target = `${authn}/sign-up?redirectUrl=${encodeURIComponent(redirectUrl)}`;
