@@ -1,0 +1,18 @@
+;; app-chat-shell — itonami（dapp）の aiueos アプリ記述子（notes.edn 形）。
+;; 判定コアは aiueos/chat_captcha.cljk（CAPTCHA 非突破・ward 境界・field-map）。
+;; 正本は lg/clj/src/lg_chat/sodai_fields.cljk（SSoT）。pure（:effects #{}）。
+{:aiueos/component :app/chat-captcha
+ :aiueos/kind :app
+ :aiueos/trust :untrusted
+ :aiueos/source "chat_captcha.cljk"
+ :aiueos/wasm "chat_captcha.wasm"
+ :aiueos/entry "main"
+ :aiueos/args []
+ :aiueos/imports #{}
+ :aiueos/exports #{:app/main
+                   :app/captcha-handoff
+                   :app/fields-complete
+                   :app/ward-consistent
+                   :app/override-take}
+ :aiueos/effects #{}
+ :aiueos/limits {:memory-pages 16 :fuel 5000000}}

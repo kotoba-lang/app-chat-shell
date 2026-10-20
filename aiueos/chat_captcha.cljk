@@ -1,0 +1,65 @@
+(ns chat.captcha
+  "chat-shell（粗大ごみ申込）判定コア — itonami dapp bundle（pure, :effects #{}）。
+
+  渋谷区 粗大ごみ 公式フォーム操作の判定（正本: lg/clj/src/lg_chat/
+  sodai_fields.cljk — field-map / CAPTCHA マーカーの SSoT）:
+
+  - **CAPTCHA / bot 認証を検知したら自動操作を止め、人間に渡す（突破しない）**。
+    recaptcha / hcaptcha / cf-turnstile / 画像認証 等のマーカーが見えたら
+    それ以上進めない。
+  - **ward 境界**: 受付は渋谷区（ward-code 13113）の actor 境界に閉じる。
+  - **field-map は 7 キー**: name / nameKana / postal / address / building /
+    phone / email。欠けたフォームは申込を組み立てられない。
+  - field-map の上書き（SODAI_FIELD_MAP JSON）が壊れていたら**既定に
+    フォールバック**（fail-safe — 壊れた設定で走らせない）。
+
+  captcha-handoff: 1 = 検知 → 自動停止・人間へ / 0 = 続行
+  fields-complete: 1 = 7 キーすべて / 0 = 欠落
+  ward-consistent: 1 = ward-code 13113（渋谷区）
+  override-take: 0 = 既定 / 1 = 上書きを採用 / 2 = 壊れた上書き → 既定
+
+  実行 host はスカラーのみ = KIR v3 / i64/direct ABI（kernel/selfhost 両対応）。
+
+  テストはゼロ引数 test-*、戻り 1/0:
+  <amu> test aiueos/chat_captcha.cljk"
+  (:export [main captcha-handoff fields-complete ward-consistent override-take
+            test-captcha test-fields test-ward test-override test-fail-closed]))
+
+(defn main [] :i64
+  0)
+
+(defn captcha-handoff [detected :i64] :i64
+  (if (= detected 1) 1 0))
+
+(defn fields-complete [n-present :i64] :i64
+  (if (= n-present 7) 1 0))
+
+(defn ward-consistent [ward-13113 :i64] :i64
+  (if (= ward-13113 1) 1 0))
+
+(defn override-take [has-override :i64 json-valid :i64] :i64
+  (if (= has-override 0)
+    0
+    (if (= json-valid 1) 1 2)))
+
+;; --- tests（戻り 1 = pass） ------------------------------------------------
+
+(defn test-captcha [] :i64
+  ;; 検知したら止めて人間に渡す（突破しない）
+  (if (= (+ (captcha-handoff 1) (captcha-handoff 0)) 1) 1 0))
+
+(defn test-fields [] :i64
+  ;; 7 キー: name / nameKana / postal / address / building / phone / email
+  (if (= (+ (fields-complete 7) (fields-complete 6) (fields-complete 8)) 1) 1 0))
+
+(defn test-ward [] :i64
+  ;; 渋谷区（13113）の境界に閉じる
+  (if (= (+ (ward-consistent 1) (ward-consistent 0)) 1) 1 0))
+
+(defn test-override [] :i64
+  ;; 壊れた上書きは既定へ（fail-safe）
+  (if (= (+ (override-take 0 0) (override-take 1 1) (override-take 1 0)) 3) 1 0))
+
+(defn test-fail-closed [] :i64
+  ;; CAPTCHA 検知は常に停止（人間以外に渡さない）
+  (if (= (captcha-handoff 1) 1) 1 0))
