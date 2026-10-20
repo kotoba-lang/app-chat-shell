@@ -1,0 +1,29 @@
+(ns chat.captcha-parity-test
+  "aiueos/chat_captcha.cljk（判定コア）と正本（sodai_fields.cljk）の parity。
+  CAPTCHA 非突破・ward 境界・field-map・fail-safe 上書きが変われば落ちる。"
+  (:require [clojure.test :refer [deftest is testing]]
+            [clojure.string :as str]
+            ["fs" :as fs]))
+
+(def src
+  (fs/readFileSync
+   (str/join "/" ["lg" "clj" "src" "lg_chat" "sodai_fields.cljk"]) "utf8"))
+
+(deftest captcha-rule-matches-guest
+  (testing "guest test-captcha / test-fail-closed: 検知したら止めて人間に渡す（突破しない）"
+    (is (str/includes? src "captcha-markers"))
+    (is (str/includes? src "recaptcha"))
+    (is (str/includes? src "cf-turnstile"))
+    (is (str/includes? src "人間に渡す"))
+    (is (str/includes? src "突破しない"))))
+
+(deftest boundary-and-fields-match-guest
+  (testing "guest test-ward: 渋谷区 13113 の境界"
+    (is (str/includes? src "13113"))
+    (is (str/includes? src "渋谷区")))
+  (testing "guest test-fields: field-map の 7 キー"
+    (doseq [k ["nameKana" "postal" "address" "building" "phone" "email"]]
+      (is (str/includes? src k))))
+  (testing "guest test-override: 壊れた上書きは既定へ（fail-safe）"
+    (is (str/includes? src "default-field-map"))
+    (is (str/includes? src "catch"))))
